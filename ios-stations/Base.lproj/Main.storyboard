@@ -17,8 +17,9 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <connections>
-                            <outlet property="dataSource" destination="BYZ-38-t0r" id="rgv-Mo-nOi"/>
-                            <outlet property="delegate" destination="BYZ-38-t0r" id="LYF-Bk-65c"/>
+                            <outlet property="dataSource" destination="BYZ-38-t0r" id="eDF-Ux-JmD"/>
+                            <outlet property="delegate" destination="BYZ-38-t0r" id="JjN-We-qfn"/>
+                            <outlet property="prefetchDataSource" destination="BYZ-38-t0r" id="ndB-h4-PI7"/>
                         </connections>
                     </tableView>
                 </viewController>
