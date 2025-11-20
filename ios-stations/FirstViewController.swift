@@ -1,12 +1,12 @@
 import UIKit
 class FirstViewController: UIViewController {
 
-    @IBOutlet weak var myButton: UIButton!     // Storyboard で接続するボタン
+    @IBOutlet weak var myButton: UIButton!      // Storyboard で接続するボタン
     
     // 👇 TableViewの接続をコード側で定義します
     @IBOutlet weak var myTableView: UITableView!
     
-    var books: [Book]?                         // テストで必要
+    var books: [Book]?                          // テストで必要
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,9 +19,9 @@ class FirstViewController: UIViewController {
             Book()
         ]
         
-        // 👇 GUIでIdentifierを設定できないため、コードで強制的に登録します
-        // TableView CellのIdentifierを"reuseCell"としてシステムに登録
-        self.myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseCell")
+        // **【ここを削除/コメントアウトします】**
+        // StoryboardでIdentifierを設定したため、コードでの登録は不要です。
+        // self.myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseCell")
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
@@ -38,6 +38,8 @@ extension FirstViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // StoryboardでIdentifierを設定しているため、必ず取得できるはずです。
+        // 強制アンラップ（as! UITableViewCell）は危険なため、ここではそのまま guard let を維持します。
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "reuseCell") else {
             return UITableViewCell()
         }
