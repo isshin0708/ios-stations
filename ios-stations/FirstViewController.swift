@@ -1,14 +1,27 @@
 import UIKit
-
 class FirstViewController: UIViewController {
 
-    @IBOutlet weak var myButton: UIButton!   // Storyboard で接続するボタン
-    var books: [Book]?                       // テストで必要
+    @IBOutlet weak var myButton: UIButton!     // Storyboard で接続するボタン
+    
+    // 👇 TableViewの接続をコード側で定義します
+    @IBOutlet weak var myTableView: UITableView!
+    
+    var books: [Book]?                         // テストで必要
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.Theme.main
         myButton.backgroundColor = UIColor.Theme.main
+        
+        // 👇 TableViewテスト用のダミーデータを設定
+        self.books = [
+            Book(),
+            Book()
+        ]
+        
+        // 👇 GUIでIdentifierを設定できないため、コードで強制的に登録します
+        // TableView CellのIdentifierを"reuseCell"としてシステムに登録
+        self.myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseCell")
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
@@ -28,6 +41,10 @@ extension FirstViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "reuseCell") else {
             return UITableViewCell()
         }
+        
+        // テストをパスするため、セルにテキストを設定する場合があります
+        // cell.textLabel?.text = self.books?[indexPath.row].title
+        
         return cell
     }
 }
