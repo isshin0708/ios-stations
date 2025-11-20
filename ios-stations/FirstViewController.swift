@@ -1,32 +1,40 @@
-//
-//  FirstViewController.swift
-//  ios-stations
-//
-
 import UIKit
 
 class FirstViewController: UIViewController {
 
-    var books: [Book]?
+    @IBOutlet weak var myButton: UIButton!   // Storyboard で接続するボタン
+    var books: [Book]?                       // テストで必要
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-
-}
-
-extension FirstViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        view.backgroundColor = UIColor.Theme.main
+        myButton.backgroundColor = UIColor.Theme.main
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+    @IBAction func buttonTapped(_ sender: UIButton) {
+        // ボタン背景色をランダムに変更
+        sender.backgroundColor = UIColor.Theme.random
+        // complete() は呼ばなくてOK
     }
 }
 
+// MARK: - UITableViewDataSource
+extension FirstViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return books?.count ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "reuseCell") else {
+            return UITableViewCell()
+        }
+        return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
 extension FirstViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 必要なら実装
     }
 }
-

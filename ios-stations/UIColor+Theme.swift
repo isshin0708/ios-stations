@@ -1,17 +1,18 @@
-//
-//  UIColor+Theme.swift
-//  ios-stations
-//
-
 import UIKit
 
 extension UIColor {
     struct Theme {
-        static var main: UIColor  { return UIColor(named: "Main")! }
-    }
-    
-    static var random: UIColor {
-        let r = CGFloat.random(in: 0...255) / 255.0
-        return UIColor(red: r, green: 1.0, blue: 1.0, alpha: 1.0)
+        static var main: UIColor {
+            return UIColor(named: "Main") ?? UIColor.systemPink
+        }
+
+        static var random: UIColor {
+            return UIColor(
+                red: CGFloat.random(in: 0...1),
+                green: CGFloat.random(in: 0...1),
+                blue: CGFloat.random(in: 0...1),
+                alpha: 1.0
+            )
+        }
     }
 }
